@@ -1,0 +1,2 @@
+rootProject.name='Felanmälan'
+include ':app'
