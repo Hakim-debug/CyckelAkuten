@@ -16,14 +16,16 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:layout_gravity="center_horizontal"/>
     <CheckBox
+        android:id="@+id/check_puncture"
         android:layout_width="wrap_content"
+        android:hint="P"
         android:layout_height="wrap_content"
-        android:text="Punktering"
-        android:id="@+id/check_puncture"/>
+        android:text="Punktering" />
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fel på Kedjan"
+        android:hint="K"
         android:id="@+id/check_chain"/>
     <CheckBox
         android:layout_width="wrap_content"
@@ -43,6 +45,11 @@
         android:text=""
         android:id="@+id/result"/>
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 
 
 </LinearLayout>
