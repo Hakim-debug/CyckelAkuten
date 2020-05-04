@@ -1,21 +1,32 @@
 package com.example.felanmlan
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
-import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
-import kotlinx.android.synthetic.main.activity_personal_data.*
 
 class MainActivity : AppCompatActivity(),View.OnClickListener{
     var selected =""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var photo = findViewById<ImageView>(R.id.iv_cam)
+
+
+        btn_cam.setOnClickListener{
+            var i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(i,123)
+
+        }
+
 
 
 
@@ -29,34 +40,35 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
 
 
         //Fortsätt knappen
-
         val button = findViewById<Button>(R.id.write_result)
-
-       // val checkBox = findViewById<CheckBox>(R.id.check_puncture)
-        //val p = textView3.text.toString()
-
-       // val intent = Intent(this, PersonalDataActivity::class.java)
-       /// intent.putExtra( "P", p)
-
-
-        //val name = check_puncture.text.toString()
 
         button.setOnClickListener{
             val intent = Intent(this, PersonalDataActivity::class.java)
-           // val name = check_puncture.text.toString()
-           // intent.putExtra( "P", name)
-            //textView4.check_puncture.id
+            photo.buildDrawingCache()
+            val bitmap: Bitmap = photo.getDrawingCache()
 
             intent.putExtra("selected", selected)
+            intent.putExtra("image",bitmap)
             startActivity(intent)
 
 
 
 
-       // val P = findViewById<CheckBox>(R.id.check_puncture)
+    }
 
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 123){
+            var bmp=data?.extras?.get("data") as Bitmap
+            iv_cam.setImageBitmap(bmp)
+
+        }
+
+
     }
+
     override fun onClick(pO: View?) {
         pO as CheckBox
         var isChecked: Boolean = pO.isChecked
@@ -96,13 +108,12 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
                 selected = ""
             }
 
+    }
 
     }
 
-
-
-    }
 }
+
 
 
 

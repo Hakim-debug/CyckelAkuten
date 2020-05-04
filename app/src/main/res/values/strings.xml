@@ -2,5 +2,11 @@
     <string name="app_name">Felanmälan</string>
     <string name="firstname">FirstName</string>
     <string name="lastname">LastName</string>
-    <string name="adress">Adress</string>
+    <string name="personNr">PersonNr</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="typ">Model</string>
+    <string name="location">Location</string>
+    <string name="select">Selected</string>
+
 </resources>

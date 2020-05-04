@@ -1,21 +1,36 @@
 package com.example.felanmlan
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Bitmap
 import android.os.Bundle
-import android.view.View
+import android.os.Parcelable
+import android.util.Log
 import android.widget.Button
-import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_personal_data.*
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
+
 
 class PersonalDataActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_data)
+        println("Hakim")
+
+        val bitmap = intent.getParcelableExtra<Parcelable>("image") as Bitmap
+
+        val image = findViewById<ImageView>(R.id.imageView)
+
+        image.setImageBitmap(bitmap)
+
+
+
 
 
 
@@ -80,18 +95,37 @@ class PersonalDataActivity : AppCompatActivity() {
             location = location,selected = selected)
 
 
+            //Här skapar du din databas
+            val db = FirebaseFirestore.getInstance()
+
+            val user: MutableMap<String, Any> = HashMap()
+            user["first"] = "Ada"
+            user["last"] = "Lovelace"
+            user["born"] = 1815
+
+// Add a new document with a generated ID
+
+// Add a new document with a generated ID
+            db.collection("users")
+                .add(user)
+                .addOnSuccessListener(OnSuccessListener<DocumentReference> { documentReference ->
+                    Log.d("!!!",
+                        "DocumentSnapshot added with ID: " + documentReference.id)
+                })
+                .addOnFailureListener(OnFailureListener { e ->
+                    Log.w("!!!",
+                        "Error adding document",
+                        e
+                    )
+                })
+
+
+
+
+
 
             val intent = Intent(this, DataSaveActivity::class.java)
             intent.putExtra("person",personInfo)
-           /* intent.putExtra( "Name", name)
-            intent.putExtra( "Email", email)
-            intent.putExtra( "Mobil", phone)
-            intent.putExtra( "Efternamn",lastName )
-            intent.putExtra( "Person nr",nr )
-            intent.putExtra( "Typ Av Cyckel?",typ )
-            intent.putExtra( "Vart Står Cyckel Parkerad?",location )
-            intent.putExtra("selected", selected)*/
-           // intent.putExtra( name = "Fel",checkBox)
 
 
            startActivity(intent)

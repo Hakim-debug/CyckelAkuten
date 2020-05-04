@@ -62,10 +62,16 @@
 
     <TextView
         android:id="@+id/selected"
-        android:layout_width="120dp"
+        android:layout_width="145dp"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="155dp"
+        android:layout_height="106dp"
+        app:srcCompat="@mipmap/ic_launcher" />
 </LinearLayout>
 
 
