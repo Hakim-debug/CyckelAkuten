@@ -44,12 +44,9 @@ class PersonalDataActivity : AppCompatActivity() {
 
         }
         supportActionBar?.title = "Personuppgifter"
-        // Nästa steg spara felanmällna till nästa aktivty i recyckelview
 
-        //Sudda här i från
 
-        //val binding = MyBinding.inflate(...)
-       /// binding.greeting.text = "Hakim"
+
 
         var intent = intent
 
@@ -73,7 +70,7 @@ class PersonalDataActivity : AppCompatActivity() {
 
         val locEt  = findViewById<EditText>(R.id.locEt)
 
-       // val checkBox = findViewById<CheckBox>(R.id.check_puncture)
+
 
 
 
@@ -83,6 +80,7 @@ class PersonalDataActivity : AppCompatActivity() {
 
 
         saveBtn.setOnClickListener{
+            Log.i("Test", "Button Clicked")
             val name = nameEt.text.toString()
             val email = emailEt.text.toString()
             val phone = phoneEt.text.toString()
@@ -90,24 +88,25 @@ class PersonalDataActivity : AppCompatActivity() {
             val nr = nrEt.text.toString()
             val typ = typEt.text.toString()
             val location = locEt.text.toString()
-           // val checkBox = checkBox.text.toString()
+
             val personInfo = PersonInfo(firstName = name, lastName = lastName,email = email,phone = phone,personnr = nr,typ = typ,
             location = location,selected = selected)
+
 
 
             //Här skapar du din databas
             val db = FirebaseFirestore.getInstance()
 
-            val user: MutableMap<String, Any> = HashMap()
-            user["first"] = "Ada"
+            val PersonInfo: MutableMap<String, Any> = HashMap()
+            personInfo["phone"] = "phone"
             user["last"] = "Lovelace"
             user["born"] = 1815
 
 // Add a new document with a generated ID
 
 // Add a new document with a generated ID
-            db.collection("users")
-                .add(user)
+            db.collection("person")
+                .add(PersonInfo)
                 .addOnSuccessListener(OnSuccessListener<DocumentReference> { documentReference ->
                     Log.d("!!!",
                         "DocumentSnapshot added with ID: " + documentReference.id)

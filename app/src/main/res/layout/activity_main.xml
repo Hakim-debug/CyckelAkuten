@@ -57,12 +57,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="TODO"
+        android:layout_gravity="center_horizontal"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <Button
         android:id="@+id/btn_cam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="Camera" />
 
 
