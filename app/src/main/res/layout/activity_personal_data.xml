@@ -18,16 +18,16 @@
         android:autofillHints="" />
     <EditText
         android:id="@+id/lastEt"
-        android:hint="Efternamn"
+        android:hint="surname"
         android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <!--<EditText
+    <EditText
         android:id="@+id/nrEt"
-        android:hint="Person nr"
-        android:inputType="number"
+        android:hint="Requests"
+        android:inputType="text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>-->
+        android:layout_height="wrap_content"/>
     <EditText
         android:id="@+id/emailEt"
         android:hint="Email"
@@ -41,13 +41,13 @@
         android:layout_height="wrap_content"/>
     <EditText
         android:id="@+id/typEt"
-        android:hint="Typ Av Cyckel?"
+        android:hint="Bicycle type?"
         android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 <EditText
         android:id="@+id/locEt"
-        android:hint="Vart Står Cyckel Parkerad?"
+        android:hint="Where Does Bicycle Stand Parked?"
         android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

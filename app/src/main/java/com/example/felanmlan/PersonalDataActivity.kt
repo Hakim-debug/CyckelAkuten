@@ -5,10 +5,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -16,18 +13,45 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
 
+
 class PersonalDataActivity : AppCompatActivity() {
+    private lateinit var db: FirebaseFirestore
+    fun  test(){
+        val elin = Test("Agnes")
+
+        db.collection("users").add(elin)
+            .addOnCompleteListener {
+                println("complete")
+
+            }.addOnCanceledListener {
+                println("cancel")
+
+            }
+            .addOnSuccessListener {
+                println("write")
+            }
+            .addOnFailureListener {
+                println("did not write")
+            }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_data)
         println("Hakim")
 
+        db = FirebaseFirestore.getInstance()
+        //test()
+
+
+
         val bitmap = intent.getParcelableExtra<Parcelable>("image") as Bitmap
 
         val image = findViewById<ImageView>(R.id.imageView)
 
         image.setImageBitmap(bitmap)
+
+
 
 
 
@@ -84,6 +108,7 @@ class PersonalDataActivity : AppCompatActivity() {
             val name = nameEt.text.toString()
             val email = emailEt.text.toString()
             val phone = phoneEt.text.toString()
+
             val lastName = lastEt.text.toString()
             val nr = nrEt.text.toString()
             val typ = typEt.text.toString()
@@ -91,22 +116,24 @@ class PersonalDataActivity : AppCompatActivity() {
 
             val personInfo = PersonInfo(firstName = name, lastName = lastName,email = email,phone = phone,personnr = nr,typ = typ,
             location = location,selected = selected)
+            Log.i("Test", personInfo.firstName)
+
 
 
 
             //Här skapar du din databas
-            val db = FirebaseFirestore.getInstance()
+           // val db = FirebaseFirestore.getInstance()
 
-            val PersonInfo: MutableMap<String, Any> = HashMap()
+            /*val PersonInfo: MutableMap<String, Any> = HashMap()
             personInfo["phone"] = "phone"
             user["last"] = "Lovelace"
-            user["born"] = 1815
+            user["born"] = 1815*/
 
 // Add a new document with a generated ID
 
 // Add a new document with a generated ID
-            db.collection("person")
-                .add(PersonInfo)
+            /*db.collection("person")
+                .add(personInfo)
                 .addOnSuccessListener(OnSuccessListener<DocumentReference> { documentReference ->
                     Log.d("!!!",
                         "DocumentSnapshot added with ID: " + documentReference.id)
@@ -116,7 +143,24 @@ class PersonalDataActivity : AppCompatActivity() {
                         "Error adding document",
                         e
                     )
-                })
+                })*/
+     var toast=Toast.makeText(applicationContext,"connect",Toast.LENGTH_LONG )
+            toast.show()
+            db.collection("person")
+                .add(personInfo)
+                .addOnCompleteListener {
+                    println("complete")
+
+                }.addOnCanceledListener {
+                    println("cancel")
+
+                }
+                .addOnSuccessListener {
+                    println("write")
+                }
+                .addOnFailureListener {
+                    println("did not write")
+                }
 
 
 
@@ -132,7 +176,9 @@ class PersonalDataActivity : AppCompatActivity() {
 
 
        }
+
     }
+    class Test(var user:String?="Elin")
 
 
 

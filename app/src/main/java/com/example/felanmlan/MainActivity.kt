@@ -9,14 +9,29 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(),View.OnClickListener{
+
+
     var selected =""
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val database = Firebase.database
+        val myRef = database.getReference("FirstName")
+
+        myRef.setValue("Hello, World!")
+
+
+
+
 
         var photo = findViewById<ImageView>(R.id.iv_cam)
 
@@ -75,7 +90,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
         when(pO.id){
             R.id.check_puncture ->
                 if (isChecked){
-                textView4.text = "Du har valt Pungtering"
+                textView4.text = "You've chosen Puncture"
                     check_chain.isChecked = false
                     R.id.bottom
                     selected = check_puncture.text.toString()
@@ -85,7 +100,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
                     selected = ""
                 }
             R.id.check_chain-> if (isChecked){
-                textView4.text = "Du har valt Kedja"
+                textView4.text = " \n" + "You have chosen Chain"
                 check_puncture.isChecked = false
                 R.id.bottom
 
@@ -97,7 +112,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
             }
 
             R.id.check_spokes-> if (isChecked){
-                textView4.text = "Du har valt Ekrrar"
+                textView4.text = "\n" + "You have chosen Spokes"
                 check_chain.isChecked = false
                 check_puncture.isChecked = false
                 R.id.bottom
@@ -109,6 +124,20 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
             }
 
     }
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.bike-> {
+                    // Respond to navigation item 1 click
+                    true
+                }
+
+                R.id.build-> {
+                    // Respond to navigation item 2 click
+                    true
+                }
+                else -> false
+            }
+        }
 
     }
 
