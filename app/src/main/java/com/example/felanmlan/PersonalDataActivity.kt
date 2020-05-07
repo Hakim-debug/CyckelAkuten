@@ -17,21 +17,21 @@ import com.google.firebase.firestore.FirebaseFirestore
 class PersonalDataActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     fun  test(){
-        val elin = Test("Agnes")
+        val elin = Person("Agnes")
 
         db.collection("users").add(elin)
             .addOnCompleteListener {
-                println("complete")
+                println("complete!!!")
 
             }.addOnCanceledListener {
-                println("cancel")
+                println("cancel!!!")
 
             }
             .addOnSuccessListener {
-                println("write")
+                println("write!!!")
             }
             .addOnFailureListener {
-                println("did not write")
+                println("did not write!!!")
             }
     }
 
@@ -41,7 +41,7 @@ class PersonalDataActivity : AppCompatActivity() {
         println("Hakim")
 
         db = FirebaseFirestore.getInstance()
-        //test()
+        test()
 
 
 
@@ -121,29 +121,7 @@ class PersonalDataActivity : AppCompatActivity() {
 
 
 
-            //Här skapar du din databas
-           // val db = FirebaseFirestore.getInstance()
 
-            /*val PersonInfo: MutableMap<String, Any> = HashMap()
-            personInfo["phone"] = "phone"
-            user["last"] = "Lovelace"
-            user["born"] = 1815*/
-
-// Add a new document with a generated ID
-
-// Add a new document with a generated ID
-            /*db.collection("person")
-                .add(personInfo)
-                .addOnSuccessListener(OnSuccessListener<DocumentReference> { documentReference ->
-                    Log.d("!!!",
-                        "DocumentSnapshot added with ID: " + documentReference.id)
-                })
-                .addOnFailureListener(OnFailureListener { e ->
-                    Log.w("!!!",
-                        "Error adding document",
-                        e
-                    )
-                })*/
      var toast=Toast.makeText(applicationContext,"connect",Toast.LENGTH_LONG )
             toast.show()
             db.collection("person")
@@ -178,7 +156,7 @@ class PersonalDataActivity : AppCompatActivity() {
        }
 
     }
-    class Test(var user:String?="Elin")
+    class Person(var user:String?="Kim2")
 
 
 

@@ -10,8 +10,8 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+//import com.google.firebase.database.ktx.database
+//import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(),View.OnClickListener{
@@ -24,11 +24,11 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val database = Firebase.database
+       /* val database = Firebase.database
         val myRef = database.getReference("FirstName")
 
         myRef.setValue("Hello, World!")
-
+*/
 
 
 

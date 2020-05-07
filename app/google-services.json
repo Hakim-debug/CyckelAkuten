@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "907148109429",
+    "firebase_url": "https://persondata1-2dbf5.firebaseio.com",
+    "project_id": "persondata1-2dbf5",
+    "storage_bucket": "persondata1-2dbf5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907148109429:android:30b5b78cfb0927ccc63a3c",
+        "android_client_info": {
+          "package_name": "com.example.felanmlan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "907148109429-073hjblov6godu1e83kjevfl3hcd4f0b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgYTQ2aMlJbsY7jeXzLup0XgspYRgbSms"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907148109429-073hjblov6godu1e83kjevfl3hcd4f0b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

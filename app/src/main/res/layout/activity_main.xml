@@ -34,13 +34,13 @@
         android:layout_height="wrap_content"
         android:text="Spokes"
         android:id="@+id/check_spokes" />
-    <Button
+   <!-- <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Continue"
         android:layout_gravity="center_horizontal"
         android:id="@+id/write_result"
-        />
+        />-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,6 +74,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/bottom_navigation_menu"
+        android:layout_gravity="center_horizontal" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continue"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/write_result"
         />
 
 
