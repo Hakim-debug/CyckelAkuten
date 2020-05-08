@@ -54,12 +54,14 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
         button.setOnClickListener{
             val intent = Intent(this, PersonalDataActivity::class.java)
             println("Hakim2")
-            photo.buildDrawingCache()
+           /* photo.buildDrawingCache()
             val bitmap: Bitmap = photo.getDrawingCache()
             println("Hakim4")
 
             intent.putExtra("selected", selected)
             intent.putExtra("image",bitmap)
+
+            */
             startActivity(intent)
             println("Hakim5")
 

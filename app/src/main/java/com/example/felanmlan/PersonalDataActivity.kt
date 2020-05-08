@@ -46,11 +46,11 @@ class PersonalDataActivity : AppCompatActivity() {
 
 
 
-        val bitmap = intent.getParcelableExtra<Parcelable>("image") as Bitmap
+       /* val bitmap = intent.getParcelableExtra<Parcelable>("image") as Bitmap
 
         val image = findViewById<ImageView>(R.id.imageView)
 
-        image.setImageBitmap(bitmap)
+        image.setImageBitmap(bitmap)*/
 
 
 
@@ -104,7 +104,7 @@ class PersonalDataActivity : AppCompatActivity() {
 
 
 
-        saveBtn.setOnClickListener{
+       /* saveBtn.setOnClickListener{
             Log.i("Test", "Button Clicked")
             val name = nameEt.text.toString()
             val email = emailEt.text.toString()
@@ -141,13 +141,13 @@ class PersonalDataActivity : AppCompatActivity() {
                     println("did not write")
                 }
 
+*/
 
 
 
 
-
-            val intent = Intent(this, DataSaveActivity::class.java)
-            intent.putExtra("person",personInfo)
+           /* val intent = Intent(this, DataSaveActivity::class.java)
+            intent.putExtra("person",personInfo)*/
 
 
            startActivity(intent)
