@@ -24,25 +24,18 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-       /* val database = Firebase.database
-        val myRef = database.getReference("FirstName")
-
-        myRef.setValue("Hello, World!")
-*/
 
 
 
 
-        var photo = findViewById<ImageView>(R.id.iv_cam)
+        val photo = findViewById<ImageView>(R.id.iv_cam2)
 
 
         btn_cam.setOnClickListener{
-            var i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            val i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(i,123)
 
         }
-
-
 
 
         check_chain.setOnClickListener(this)
@@ -55,16 +48,20 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
 
 
         //Fortsätt knappen
-        val button = findViewById<Button>(R.id.write_result)
+        val button = findViewById<Button>(R.id.next_act)
+        println("in")
 
         button.setOnClickListener{
             val intent = Intent(this, PersonalDataActivity::class.java)
+            println("Hakim2")
             photo.buildDrawingCache()
             val bitmap: Bitmap = photo.getDrawingCache()
+            println("Hakim4")
 
             intent.putExtra("selected", selected)
             intent.putExtra("image",bitmap)
             startActivity(intent)
+            println("Hakim5")
 
 
 
@@ -77,7 +74,8 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 123){
             var bmp=data?.extras?.get("data") as Bitmap
-            iv_cam.setImageBitmap(bmp)
+            iv_cam2.setImageBitmap(bmp)
+            println("Hakim6")
 
         }
 

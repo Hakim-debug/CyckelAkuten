@@ -29,7 +29,7 @@ class DataSaveActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data_save)
-        supportActionBar?.title = "Översikt"
+        supportActionBar?.title = "Overview"
         nameEt = findViewById(R.id.textViewFirstName)
         lastEt = findViewById(R.id.textViewlastName)
         nrEt = findViewById(R.id.textViewPersonNr)
@@ -53,34 +53,6 @@ class DataSaveActivity : AppCompatActivity() {
         typEt.text = personInfo.typ
         locEt.text = personInfo.location
         selected.text = personInfo.selected
-
-
-
-       /* val name =  intent.getStringExtra("Name")
-        println(name)
-
-        val email =  intent.getStringExtra("Email")
-        println(email)
-
-         val phone =  intent.getStringExtra("Mobil")
-        println(phone)
-
-         val lastName = intent.getStringExtra("Efternamn")
-
-         val nr =  intent.getStringExtra("Person nr")
-
-         val typ =  intent.getStringExtra("Typ Av Cyckel?")
-
-         val location =  intent.getStringExtra("Vart Står Cyckel Parkerad?")
-        val selected =  intent.getStringExtra("selected")
-
-*/
-
-//textView
-       /* val resultTv = findViewById<TextView>(R.id.resultTv)
-
-        resultTv.text = "Name:"+name+"\nEfternamn:"+lastName+"\nPerson nr: "+nr+"\nEmail:"+email+
-                "\nMobil:"+phone+"\nTyp Av Cyckel?"+typ+"\nVart Står Cyckel Parkerad?"+location+"\nselected:"+selected*/
 
 
 

@@ -16,10 +16,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class PersonalDataActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
-    fun  test(){
-        val elin = Person("Agnes")
 
-        db.collection("users").add(elin)
+    fun  test(){
+        val persons = Person("Hakim")
+
+        db.collection("users").add(persons)
             .addOnCompleteListener {
                 println("complete!!!")
 
@@ -67,7 +68,7 @@ class PersonalDataActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
-        supportActionBar?.title = "Personuppgifter"
+        supportActionBar?.title = "Personal data"
 
 
 
