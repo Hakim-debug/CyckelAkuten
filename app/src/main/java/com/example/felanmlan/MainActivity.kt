@@ -23,12 +23,12 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_report)
 
 
 
 
-        val photo = findViewById<ImageView>(R.id.iv_cam2)
+        val photo = findViewById<ImageView>(R.id.iv_cam)
 
 
         btn_cam.setOnClickListener{
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
 
 
         //Fortsätt knappen
-        val button = findViewById<Button>(R.id.next_act)
+        val button = findViewById<Button>(R.id.write_result)
         println("in")
 
         button.setOnClickListener{
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
             println("Hakim2")
            /* photo.buildDrawingCache()
             val bitmap: Bitmap = photo.getDrawingCache()
-            println("Hakim4")
+            println("Hakim4")*/
 
             intent.putExtra("selected", selected)
             intent.putExtra("image",bitmap)
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 123){
             var bmp=data?.extras?.get("data") as Bitmap
-            iv_cam2.setImageBitmap(bmp)
+            iv_cam.setImageBitmap(bmp)
             println("Hakim6")
 
         }

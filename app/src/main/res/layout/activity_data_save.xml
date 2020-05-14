@@ -8,14 +8,12 @@
     android:orientation="vertical"
     tools:context=".DataSaveActivity">
 
-   
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/CardFirstName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         app:cardCornerRadius="3dp"
@@ -273,15 +271,16 @@
         android:id="@+id/CardLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         app:cardCornerRadius="3dp"
         app:cardElevation="3dp"
         app:cardUseCompatPadding="true"
-        app:layout_constraintTop_toBottomOf="@id/CardModel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/CardModel">
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -317,12 +316,13 @@
         android:id="@+id/CardSelected"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         app:cardCornerRadius="3dp"
         app:cardElevation="3dp"
         app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -331,7 +331,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="7dp"
+            android:padding="5dp"
             android:scrollbarDefaultDelayBeforeFade="600">
 
             <TextView

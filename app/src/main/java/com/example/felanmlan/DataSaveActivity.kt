@@ -1,15 +1,11 @@
 package com.example.felanmlan
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.EditText
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_data_save.*
-import kotlinx.android.synthetic.main.activity_personal_data.*
+import androidx.appcompat.app.AppCompatActivity
 
 class DataSaveActivity : AppCompatActivity() {
      lateinit var selected : TextView
-
 
 
     lateinit var  nameEt: TextView
@@ -30,9 +26,10 @@ class DataSaveActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data_save)
         supportActionBar?.title = "Overview"
+
         nameEt = findViewById(R.id.textViewFirstName)
         lastEt = findViewById(R.id.textViewlastName)
-        nrEt = findViewById(R.id.textViewPersonNr)
+        this.nrEt = findViewById(R.id.textViewPersonNr)
         emailEt =findViewById(R.id.textViewEmail)
         phoneEt =findViewById(R.id.textViewPhone)
         typEt = findViewById(R.id.textViewModel)
