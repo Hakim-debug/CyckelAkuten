@@ -1,6 +1,8 @@
 package com.example.felanmlan
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -10,6 +12,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.activity_main.*
+import java.io.ByteArrayOutputStream
 
 
 class PersonalDataActivity : AppCompatActivity() {
@@ -23,17 +28,17 @@ class PersonalDataActivity : AppCompatActivity() {
             .addOnCompleteListener {
                 println("set!!!")
 
-
             }.addOnCanceledListener {
                 println("cancel!!!")
 
             }
             .addOnSuccessListener {
                 println("write!!!")
+
+
             }
             .addOnFailureListener {
-                println("did not write!!!")
-            }
+                println("did not write!!!") }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,16 +46,16 @@ class PersonalDataActivity : AppCompatActivity() {
         setContentView(R.layout.activity_personal_data)
         println("Hakim")
 
+        val imageUrl = intent.getStringExtra("imageUrl")
+
         db = FirebaseFirestore.getInstance()
         test()
-       // displayFire()
 
 
 
 
 
-      //  val name =  intent.getStringExtra("Name")
-
+     //Creating Send Button and go to Next activity (DataSaveActivity )
         val saveBtn = findViewById<Button>(R.id.saveBtn)
         saveBtn.setOnClickListener{
 
@@ -60,10 +65,7 @@ class PersonalDataActivity : AppCompatActivity() {
         }
         supportActionBar?.title = "Personal data"
 
-
-
-
-       // var intent = intent
+       //Creating a forum and  to show in Next activity (DataSaveActivity )
 
         val selected =  intent.getStringExtra("selected")
 
@@ -89,11 +91,7 @@ class PersonalDataActivity : AppCompatActivity() {
 
 
 
-
-
-
-
-//Send button
+        //Send button
         saveBtn.setOnClickListener{
             Log.i("Test", "Button Clicked")
             val name = nameEt.text.toString()
@@ -106,28 +104,48 @@ class PersonalDataActivity : AppCompatActivity() {
             val location = locEt.text.toString()
 
             val personInfo = PersonInfo(firstName = name, lastName = lastName,email = email,phone = phone,personnr = rec,typ = typ,
-            location = location,selected = selected)
+            location = location,selected = selected,image = imageUrl)
            // Log.i("Test", personInfo.firstName)
 
 
 
 
 
-     var toast=Toast.makeText(applicationContext,"ErrorReport Sent",Toast.LENGTH_LONG )
+
+
+            var toast=Toast.makeText(applicationContext,"ErrorReport Sent",Toast.LENGTH_LONG )
             toast.show()
+
+
+
+
+
+            //Add Data Firebase
             db.collection("person")
+
+
                 .add(personInfo)
+
+
                 .addOnCompleteListener {
+
+
                     println("complete")
-                    displayFire()
+
+
 
                 }.addOnCanceledListener {
                     println("cancel3")
+                   // readData()
+
 
 
                 }
                 .addOnSuccessListener {
+
                     println("write")
+                    
+
 
                 }
                 .addOnFailureListener {
@@ -135,58 +153,21 @@ class PersonalDataActivity : AppCompatActivity() {
 
                 }
 
-            /*db.collection("users")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        for (document in task.result!!) {
-                            Log.d(
-                                FragmentActivity.TAG,
-                                document.id + " => " + document.data
-                            )
-                        }
-                    } else {
-                        Log.w(
-                            FragmentActivity.TAG,
-                            "Error getting documents.",
-                            task.exception
-                        )
-                    }
-                }
-*/
-
             val intent = Intent(this, DataSaveActivity::class.java)
             intent.putExtra("person",personInfo)
+            
 
 
            startActivity(intent)
 
-
-
        }
 
     }
+
     class Person(var user:String?="Kim2")
 
-private fun displayFire(){
-    val shoppingItems = mutableListOf<PersonInfo>()
 
-    val itemsRef = db.collection("person")
 
-    itemsRef.addSnapshotListener { snapshot, e ->
-        if( snapshot != null ) {
-            shoppingItems.clear()
-            for(document in snapshot.documents) {
-                val newItem = document.toObject(PersonInfo::class.java)
-                if (newItem != null)
-                    shoppingItems.add(newItem!!)
-                if (newItem != null) {
-                    println("Works!!!!: ${newItem.firstName!!}")
-                }
-            }
-        }
-    }
-}
 
 }
 

@@ -5,7 +5,7 @@
         android:id="@+id/page_1"
         android:enabled="true"
         android:icon="@drawable/ic_build"
-        android:title="@string/app_name"
+        android:title="Error Report"
         />
 
     <item

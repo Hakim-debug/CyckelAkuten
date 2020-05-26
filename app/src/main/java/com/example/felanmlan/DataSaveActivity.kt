@@ -5,8 +5,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class DataSaveActivity : AppCompatActivity() {
-     lateinit var selected : TextView
 
+    //Show the formText in a TextView
+    lateinit var selected : TextView
 
     lateinit var  nameEt: TextView
 
@@ -29,7 +30,7 @@ class DataSaveActivity : AppCompatActivity() {
 
         nameEt = findViewById(R.id.textViewFirstName)
         lastEt = findViewById(R.id.textViewlastName)
-        this.nrEt = findViewById(R.id.textViewPersonNr)
+        nrEt = findViewById(R.id.textViewRequest)
         emailEt =findViewById(R.id.textViewEmail)
         phoneEt =findViewById(R.id.textViewPhone)
         typEt = findViewById(R.id.textViewModel)
@@ -41,10 +42,10 @@ class DataSaveActivity : AppCompatActivity() {
         var intent = intent
 
         val personInfo = intent.getSerializableExtra("person") as PersonInfo
-
+//Display the Persons info in a cardView
         nameEt.text = personInfo.firstName
         lastEt.text = personInfo.lastName
-        nrEt.text= personInfo.personnr
+        nrEt.text = personInfo.personnr
         emailEt.text = personInfo.email
         phoneEt.text = personInfo.phone
         typEt.text = personInfo.typ

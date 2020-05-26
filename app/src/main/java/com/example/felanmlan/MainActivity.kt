@@ -2,6 +2,7 @@ package com.example.felanmlan
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
@@ -10,25 +11,23 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.storage.FirebaseStorage
 //import com.google.firebase.database.ktx.database
 //import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.ByteArrayOutputStream
+import java.util.*
 
 class MainActivity : AppCompatActivity(),View.OnClickListener{
 
 
     var selected =""
-
+    lateinit var imageUrl:String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
-
-
-
-
-        val photo = findViewById<ImageView>(R.id.iv_cam)
 
 
         btn_cam.setOnClickListener{
@@ -44,9 +43,6 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
 
 
 
-
-
-
         //Fortsätt knappen
         val button = findViewById<Button>(R.id.write_result)
         println("in")
@@ -54,9 +50,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
         button.setOnClickListener{
             val intent = Intent(this, PersonalDataActivity::class.java)
             println("Hakim2")
-           /* photo.buildDrawingCache()
-            val bitmap: Bitmap = photo.getDrawingCache()
-            println("Hakim4")*/
+
 
             intent.putExtra("selected", selected)
             intent.putExtra("image",bitmap)
@@ -66,24 +60,44 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
             println("Hakim5")
 
 
-
-
     }
 
     }
-
+//Displays the image in Firebase storage
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 123){
+            imageUrl = UUID.randomUUID().toString()
+
             var bmp=data?.extras?.get("data") as Bitmap
             iv_cam.setImageBitmap(bmp)
             println("Hakim6")
+            iv_cam.isDrawingCacheEnabled = true
+            iv_cam.buildDrawingCache()
+            val bitmap = (iv_cam.drawable as BitmapDrawable).bitmap
+            val baos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+            val data = baos.toByteArray()
+            //Storage
+            val storageRef = FirebaseStorage.getInstance().reference
+            val imageRef = storageRef.child("images/$imageUrl.jpg")
+
+            var uploadTask = imageRef.putBytes(data)
+            uploadTask.addOnFailureListener {
+                println("!!! fail" + it.localizedMessage)
+            }.addOnSuccessListener {
+                println("!!! success" )
+                // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+                // ...
+            }
 
         }
 
-
     }
 
+
+
+//Check Box
     override fun onClick(pO: View?) {
         pO as CheckBox
         var isChecked: Boolean = pO.isChecked
@@ -124,6 +138,9 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
             }
 
     }
+
+
+    //BottomNavigationView Action
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.bike-> {
