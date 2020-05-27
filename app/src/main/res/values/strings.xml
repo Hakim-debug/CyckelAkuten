@@ -8,6 +8,17 @@
     <string name="typ">Model</string>
     <string name="location">Location</string>
     <string name="select">Selected</string>
-    <string name="report_error_bicycle">Report error Bicycle</string>
+    <string name="report_error_bicycle">Report error Bicycle
+
+    </string>
+
+    <string name="name">FirebaseAuthApp</string>
+    <string name="Email">Email</string>
+    <string name="password">Password</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="login_title">Login</string>
+    <string name="create_act">Create Account</string>
+
 
 </resources>
