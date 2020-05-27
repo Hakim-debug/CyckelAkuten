@@ -18,6 +18,13 @@ class UserRecyclerview : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_recyclerview)
         supportActionBar?.title = "Job objects"
+        val recyclerView = findViewById<RecyclerView>(R.id.recycleViewErrors)
+
+        recyclerView.layoutManager = LinearLayoutManager(baseContext)
+
+        val adapter = UserRecycleAdapter(context = this, errors = errorReports)
+
+        recyclerView.adapter = adapter
 
         db = FirebaseFirestore.getInstance()
         try {
@@ -30,6 +37,7 @@ class UserRecyclerview : AppCompatActivity() {
                         try {
                             val newItem = document.toObject(PersonInfo::class.java)
                             if (newItem != null) {
+                                newItem.id = document.id
                                 errorReports.add(newItem)
 
                                 //println("Works!!!!K: $newItem")
@@ -38,20 +46,11 @@ class UserRecyclerview : AppCompatActivity() {
                             println("Error on object: ${e.localizedMessage}")
                         }
 
-                        db.collection("person").document("documentId")
-                            .delete()
-                            .addOnSuccessListener { Log.d(" ", "DocumentSnapshot successfully deleted!") }
-                            .addOnFailureListener { e -> Log.w(" ", "Error deleting document", e) }
+
 
 
                     }
-                    val recyclerView = findViewById<RecyclerView>(R.id.recycleViewErrors)
-
-                    recyclerView.layoutManager = LinearLayoutManager(baseContext)
-
-                    val adapter = UserRecycleAdapter(context = this, errors = errorReports)
-
-                    recyclerView.adapter = adapter
+                   adapter.notifyDataSetChanged()
                 }
             }
         } catch (e: Exception) {

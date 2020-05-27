@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ChosenActivity">
 
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -15,6 +17,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -218,6 +222,8 @@
                         android:id="@+id/actionButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
                         android:clickable="true"
                         android:focusable="true"
                         app:srcCompat="@android:drawable/ic_input_add" />
@@ -403,4 +409,5 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

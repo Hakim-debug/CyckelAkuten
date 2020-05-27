@@ -1,24 +1,19 @@
 package com.example.felanmlan
 
 import android.app.AlertDialog
-import android.view.View
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Bitmap
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SnapHelper
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_data_save.view.*
-import kotlinx.android.synthetic.main.activity_personal_data.view.*
-import kotlinx.android.synthetic.main.errors_item.view.*
-import java.lang.Error
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 
 
 class UserRecycleAdapter(private val context: Context, private val errors: List<PersonInfo>) :
@@ -32,8 +27,6 @@ class UserRecycleAdapter(private val context: Context, private val errors: List<
         val textViewAge = itemView.findViewById<TextView>(R.id.textAge)
         val textViewEmail = itemView.findViewById<TextView>(R.id.textEmail)
         var buttonDelete: ImageButton = itemView.findViewById(R.id.buttonDelete)
-
-
 
 
         var personInfo: PersonInfo? = null
@@ -79,16 +72,45 @@ class UserRecycleAdapter(private val context: Context, private val errors: List<
 
         }
 
-        holder.buttonDelete.setOnClickListener{
+        holder.buttonDelete.setOnClickListener {
             val dialogBuilder = AlertDialog.Builder(context)
             dialogBuilder.setTitle("Remove Object?")
                 .setMessage("Do you want to Remove this object?")
+                .setPositiveButton("Remove", DialogInterface.OnClickListener {
 
+                        dialog, id ->
+                    println("id" + errors[position].id)
+                    val db = FirebaseFirestore.getInstance()
+
+                    errors[position].id?.let { it1 ->
+                        db.collection("person").document(it1)
+                            .delete()
+                            .addOnSuccessListener {
+                                Log.d(
+                                    " ",
+                                    "DocumentSnapshot successfully deleted!"
+                                )
+                            }
+                            .addOnFailureListener { e -> Log.w(" ", "Error deleting document", e) }
+
+
+                    }
+
+
+                    // Snackbar.make(view,text " ")
+
+
+                })
+                .setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, id ->
+                    dialog.cancel()
+
+
+                })
             val alert = dialogBuilder.create()
 
             alert.show()
 
-            // Snackbar.make(view, text"Rmovd",)
+
 
 
             println("Delete")
