@@ -2,7 +2,6 @@ package com.example.felanmlan
 
 import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -10,9 +9,14 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import android.widget.ToggleButton
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_login.*
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -23,11 +27,13 @@ class LoginActivity : AppCompatActivity() {
     private var etPassword: EditText? = null
     private var btnCreateAccount: Button? = null
     private var mProgressBar: ProgressDialog? = null
+    lateinit var isBusiness: ToggleButton
 
     //Firebase references
     private val TAG = "CreateAccountActivity"
 
     private var mDatabaseReference: DatabaseReference? = null
+    var db = FirebaseFirestore.getInstance()
     private var mDatabase: FirebaseDatabase? = null
     private var mAuth: FirebaseAuth? = null
 
@@ -47,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
         initialise()
     }
 
-    // db = FirebaseFirestore.getInstance()
+
     private fun initialise() {
 
         etFirstName = findViewById<View>(R.id.et_first_name) as EditText
@@ -56,9 +62,10 @@ class LoginActivity : AppCompatActivity() {
         etPassword = findViewById<View>(R.id.et_password) as EditText
         btnCreateAccount = findViewById<View>(R.id.btn_register) as Button
         mProgressBar = ProgressDialog(this)
+        isBusiness = findViewById<ToggleButton>(R.id.togglsBusiness)
 
         mDatabase = FirebaseDatabase.getInstance()
-        mDatabaseReference = mDatabase!!.reference!!.child("users")
+        mDatabaseReference = mDatabase!!.reference!!.child("Users")
         mAuth = FirebaseAuth.getInstance()
 
         btnCreateAccount!!.setOnClickListener { createNewAccount() }
@@ -70,6 +77,7 @@ class LoginActivity : AppCompatActivity() {
         lastName = etLastName?.text.toString()
         email = etEmail?.text.toString()
         password = etPassword?.text.toString()
+        val isBusiness: Boolean = togglsBusiness.isChecked
 
         if (!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName)
             && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)
@@ -86,6 +94,7 @@ class LoginActivity : AppCompatActivity() {
             .createUserWithEmailAndPassword(email!!, password!!)
             .addOnCompleteListener(this) { task ->
                 mProgressBar!!.hide()
+
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success")
@@ -93,9 +102,15 @@ class LoginActivity : AppCompatActivity() {
                     //Verify Email
                     verifyEmail();
                     //update user profile information
-                    val currentUserDb = mDatabaseReference!!.child(userId)
-                    currentUserDb.child("firstName").setValue(firstName)
-                    currentUserDb.child("lastName").setValue(lastName)
+                    val currentUserDb = db.collection("Users").document(userId)
+                    val user: MutableMap<String, Any> = HashMap()
+                    user["firstName"] = firstName!!
+                    user["lastName"] = lastName!!
+                    user["Email"] = email!!
+                    user["isBusiness"] = isBusiness
+
+                    currentUserDb.set(user)
+
                     updateUserInfoAndUI()
                 } else {
                     // If sign in fails, display a message to the user.

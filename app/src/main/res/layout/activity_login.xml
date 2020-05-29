@@ -39,17 +39,27 @@
         android:hint="@string/password"
         android:inputType="textPassword" />
 
+    <ToggleButton
+        android:id="@+id/togglsBusiness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_password"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="23dp"
+        android:text="Is Business"
+        android:textOff="Customer"
+        android:textOn="Business" />
+
     <Button
         android:id="@+id/btn_register"
         style="@style/viewCustom"
-        android:layout_below="@id/et_password"
+        android:layout_below="@+id/togglsBusiness"
+        android:layout_marginTop="-307dp"
         android:background="@color/colorAccent"
         android:text="@string/create_act"
         android:textColor="@android:color/white"
         android:textStyle="bold" />
-
-
-
 
 
 </RelativeLayout>

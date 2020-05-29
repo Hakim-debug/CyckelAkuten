@@ -9,19 +9,23 @@
 
         <item
             android:id="@+id/home"
+            android:enabled="true"
             android:title="Home"
             android:icon="@drawable/ic_home"/>
         <item
             android:id="@+id/build"
+            android:enabled="true"
             android:title="Build"
             android:icon="@drawable/ic_build"/>
         <item
             android:id="@+id/bike"
+            android:enabled="true"
             android:title="Bike"
             android:icon="@drawable/ic_bike"/>
         <item
             android:id="@+id/place"
             android:title="Place"
+            android:enabled="true"
             android:icon="@drawable/ic_place"/>
 
 

@@ -21,43 +21,42 @@ class PersonalDataActivity : AppCompatActivity() {
 
     private lateinit var db: FirebaseFirestore
 
-    fun  test(){
-        val persons = Person("Hakim")
+    /* private fun test() {
+         val persons = Person("???")
 
-        db.collection("users").add(persons)
-            .addOnCompleteListener {
-                println("set!!!")
+         db.collection("users").add(persons)
+             .addOnCompleteListener {
+                 println("set!!!")
 
-            }.addOnCanceledListener {
-                println("cancel!!!")
+             }.addOnCanceledListener {
+                 println("cancel!!!")
 
-            }
-            .addOnSuccessListener {
-                println("write!!!")
+             }
+             .addOnSuccessListener {
+                 println("write!!!")
 
 
-            }
-            .addOnFailureListener {
-                println("did not write!!!") }
-    }
+             }
+             .addOnFailureListener {
+                 println("did not write!!!")
+             }
+     }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_data)
+        supportActionBar?.title = "Personal Data"
         println("Hakim")
 
         val imageUrl = intent.getStringExtra("imageUrl")
 
         db = FirebaseFirestore.getInstance()
-        test()
+        //test()
 
 
-
-
-
-     //Creating Send Button and go to Next activity (DataSaveActivity )
+        //Creating Send Button and go to Next activity (DataSaveActivity )
         val saveBtn = findViewById<Button>(R.id.saveBtn)
-        saveBtn.setOnClickListener{
+        saveBtn.setOnClickListener {
 
             val intent = Intent(this, DataSaveActivity::class.java)
             startActivity(intent)
@@ -67,32 +66,29 @@ class PersonalDataActivity : AppCompatActivity() {
 
        //Creating a forum and  to show in Next activity (DataSaveActivity )
 
-        val selected =  intent.getStringExtra("selected")
+        val selected = intent.getStringExtra("selected")
 
         val textSelected = findViewById<TextView>(R.id.selected)
 
-        textSelected.text=selected
+        textSelected.text = selected
 
-        val nameEt =findViewById<EditText>(R.id.nameEt)
+        val nameEt = findViewById<EditText>(R.id.nameEt)
 
         val lastEt = findViewById<EditText>(R.id.lastEt)
 
         val nrEt = findViewById<EditText>(R.id.nrEt)
 
-        val emailEt =findViewById<EditText>(R.id.emailEt)
+        val emailEt = findViewById<EditText>(R.id.emailEt)
 
-        val phoneEt =findViewById<EditText>(R.id.phoneEt)
+        val phoneEt = findViewById<EditText>(R.id.phoneEt)
 
-        val typEt  = findViewById<EditText>(R.id.typEt)
+        val typEt = findViewById<EditText>(R.id.typEt)
 
-        val locEt  = findViewById<EditText>(R.id.locEt)
-
-
-
+        val locEt = findViewById<EditText>(R.id.locEt)
 
 
         //Send button
-        saveBtn.setOnClickListener{
+        saveBtn.setOnClickListener {
             Log.i("Test", "Button Clicked")
             val name = nameEt.text.toString()
             val email = emailEt.text.toString()
@@ -103,21 +99,22 @@ class PersonalDataActivity : AppCompatActivity() {
             val typ = typEt.text.toString()
             val location = locEt.text.toString()
 
-            val personInfo = PersonInfo(firstName = name, lastName = lastName,email = email,phone = phone,personnr = rec,typ = typ,
-            location = location,selected = selected,image = imageUrl)
-           // Log.i("Test", personInfo.firstName)
+            val personInfo = PersonInfo(
+                firstName = name,
+                lastName = lastName,
+                email = email,
+                phone = phone,
+                personnr = rec,
+                typ = typ,
+                location = location,
+                selected = selected,
+                image = imageUrl
+            )
+            // Log.i("Test", personInfo.firstName)
 
 
-
-
-
-
-
-            var toast=Toast.makeText(applicationContext,"ErrorReport Sent",Toast.LENGTH_LONG )
+            var toast = Toast.makeText(applicationContext, "ErrorReport Sent", Toast.LENGTH_LONG)
             toast.show()
-
-
-
 
 
             //Add Data Firebase
@@ -133,18 +130,15 @@ class PersonalDataActivity : AppCompatActivity() {
                     println("complete")
 
 
-
                 }.addOnCanceledListener {
                     println("cancel3")
-                   // readData()
-
+                    // readData()
 
 
                 }
                 .addOnSuccessListener {
 
                     println("write")
-                    
 
 
                 }
@@ -154,19 +148,17 @@ class PersonalDataActivity : AppCompatActivity() {
                 }
 
             val intent = Intent(this, DataSaveActivity::class.java)
-            intent.putExtra("person",personInfo)
-            
+            intent.putExtra("person", personInfo)
 
 
-           startActivity(intent)
 
-       }
+            startActivity(intent)
+
+        }
 
     }
 
-    class Person(var user:String?="Kim2")
-
-
+    class Person(var user: String? = "Kim2")
 
 
 }
