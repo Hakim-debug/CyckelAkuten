@@ -20,7 +20,7 @@
         <item
             android:id="@+id/bike"
             android:enabled="true"
-            android:title="Bike"
+            android:title="Workshop"
             android:icon="@drawable/ic_bike"/>
         <item
             android:id="@+id/place"

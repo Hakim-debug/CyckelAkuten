@@ -11,9 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
 
 
 class UserRecycleAdapter(private val context: Context, private val errors: List<PersonInfo>) :
@@ -23,7 +21,7 @@ class UserRecycleAdapter(private val context: Context, private val errors: List<
 
     //Here view creates
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textViewName = itemView.findViewById<TextView>(R.id.textName)
+        val textViewName = itemView.findViewById<TextView>(R.id.txtName)
         val textViewAge = itemView.findViewById<TextView>(R.id.textAge)
         val textViewEmail = itemView.findViewById<TextView>(R.id.textEmail)
         var buttonDelete: ImageButton = itemView.findViewById(R.id.buttonDelete)

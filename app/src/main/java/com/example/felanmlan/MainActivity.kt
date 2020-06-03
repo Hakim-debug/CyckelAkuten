@@ -152,16 +152,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             when (item.itemId) {
                 R.id.bike -> {
 
-                    //bottom_navigation.selectedItemId = R.id.home
-                    // Respond to navigation item 1 click
+                    val intent = Intent(this, PersonalDataActivity::class.java)
+
+                    startActivity(intent)
+
                     true
                 }
 
                 R.id.build -> {
 
+                    val intent = Intent(this, MainActivity::class.java)
+
+
                     // Respond to navigation item 2 click
                     true
                 }
+                R.id.home -> {
+
+                    val intent = Intent(this, UserLoginActivity::class.java)
+
+                    startActivity(intent)
+
+                    true
+                }
+
                 else -> false
             }
         }
