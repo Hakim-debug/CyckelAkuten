@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,33 +21,16 @@ import java.io.ByteArrayOutputStream
 class PersonalDataActivity : AppCompatActivity() {
 
     private lateinit var db: FirebaseFirestore
+    lateinit var bottomNavigationView: BottomNavigationView
 
-    /* private fun test() {
-         val persons = Person("???")
-
-         db.collection("users").add(persons)
-             .addOnCompleteListener {
-                 println("set!!!")
-
-             }.addOnCanceledListener {
-                 println("cancel!!!")
-
-             }
-             .addOnSuccessListener {
-                 println("write!!!")
-
-
-             }
-             .addOnFailureListener {
-                 println("did not write!!!")
-             }
-     }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_data)
         supportActionBar?.title = "Personal Data"
-        println("Hakim")
+
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation)
 
         val imageUrl = intent.getStringExtra("imageUrl")
 
@@ -155,6 +139,65 @@ class PersonalDataActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
+
+        //BottomNavigationView Action
+
+        val navListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            println("itemId!!: ${item.itemId}")
+            println("bike!!: ${R.id.bike}")
+            when (item.itemId) {
+                R.id.page_1-> {
+
+
+                    val intent = Intent(this, PersonalDataActivity::class.java)
+
+                    startActivity(intent)
+                    println("Next")
+
+                    true
+                }
+
+                R.id.page_2  -> {
+
+                    val intent = Intent(this, WorkShopActivity::class.java)
+
+                    startActivity(intent)
+
+                    println("Next 2")
+
+
+                    // Respond to navigation item 2 click
+                    true
+                }
+                R.id.page_3-> {
+
+                    val intent = Intent(this, MapsActivity::class.java)
+
+                    startActivity(intent)
+
+                    println("NextHome")
+
+                    true
+                }
+
+                R.id.page_4-> {
+
+                    val intent = Intent(this, MainActivity::class.java)
+
+                    startActivity(intent)
+
+                    println("NextHome")
+
+                    true
+                }
+
+                else -> false
+            }
+        }
+
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener)
+
 
     }
 

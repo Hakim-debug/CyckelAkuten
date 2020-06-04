@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.felanmlan.R.id.build
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.storage.FirebaseStorage
 //import com.google.firebase.database.ktx.database
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     var selected = ""
     lateinit var imageUrl: String
+    lateinit var bottomNavigationView: BottomNavigationView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,10 +33,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_report)
         supportActionBar?.title = "Report Error"
 
-        /* BottomNavigationView =findViewById<Button>(R.id.bottom_navigation)
-         bottomNavigatitonView.selectedItemId(R.id.bike)
 
- */
+        bottomNavigationView = findViewById(R.id.bottom_navigation)
+
+
+        // bottomNavigatitonView.selectedItemId(R.id.bike)
 
 
         btn_cam.setOnClickListener {
@@ -49,7 +52,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         check_spokes.setOnClickListener(this)
 
 
-        //Fortsätt knappen
+        //Contineu Buttom
         val button = findViewById<Button>(R.id.write_result)
         println("in")
 
@@ -68,7 +71,69 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         }
 
+        //BottomNavigationView Action
+
+        val navListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            println("itemId!!: ${item.itemId}")
+            println("bike!!: ${R.id.bike}")
+            when (item.itemId) {
+                R.id.page_1-> {
+
+
+                    val intent = Intent(this, PersonalDataActivity::class.java)
+
+                    startActivity(intent)
+                    println("Next")
+
+                    true
+                }
+
+                R.id.page_2  -> {
+
+                    val intent = Intent(this, WorkShopActivity::class.java)
+
+                    startActivity(intent)
+
+                    println("Next 2")
+
+
+                    // Respond to navigation item 2 click
+                    true
+                }
+                R.id.page_3-> {
+
+                    val intent = Intent(this, MapsActivity::class.java)
+
+                    startActivity(intent)
+
+                    println("NextHome")
+
+                    true
+                }
+
+                R.id.page_4-> {
+
+                    val intent = Intent(this, MainActivity::class.java)
+
+                    startActivity(intent)
+
+                    println("NextHome")
+
+                    true
+                }
+
+                else -> false
+            }
+        }
+
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener)
+
     }
+
+
+
+
 
     //Displays the image in Firebase storage
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -143,41 +208,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 selected = ""
             }
 
-        }
-
-
-        //BottomNavigationView Action
-        BottomNavigationView.OnNavigationItemSelectedListener { item ->
-
-            when (item.itemId) {
-                R.id.bike -> {
-
-                    val intent = Intent(this, PersonalDataActivity::class.java)
-
-                    startActivity(intent)
-
-                    true
-                }
-
-                R.id.build -> {
-
-                    val intent = Intent(this, MainActivity::class.java)
-
-
-                    // Respond to navigation item 2 click
-                    true
-                }
-                R.id.home -> {
-
-                    val intent = Intent(this, UserLoginActivity::class.java)
-
-                    startActivity(intent)
-
-                    true
-                }
-
-                else -> false
-            }
         }
 
     }

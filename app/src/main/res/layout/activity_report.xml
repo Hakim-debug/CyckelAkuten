@@ -12,26 +12,28 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="12dp"
+        android:layout_marginBottom="695dp"
         android:text="@string/report_error_bicycle"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-157dp"
+        tools:layout_editor_absoluteY="-72dp" />
 
     <CheckBox
         android:id="@+id/check_puncture"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="250dp"
         android:hint="P"
         android:text="Puncture"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,6 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="265dp"
         android:layout_marginBottom="21dp"
         android:hint="K"
         android:text="Chain"
@@ -57,6 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="97dp"
+        android:layout_marginEnd="255dp"
         android:text="Spokes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,10 +93,11 @@
 
     <ImageView
         android:id="@+id/iv_cam"
-        android:layout_width="54dp"
-        android:layout_height="40dp"
+        android:layout_width="90dp"
+        android:layout_height="59dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="21dp"
+        android:layout_marginEnd="300dp"
         android:contentDescription="TODO"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -62,7 +62,7 @@ class ChosenActivity : AppCompatActivity() {
             println("ImageUrl: ${imageUrl}")
             val storage = FirebaseStorage.getInstance()
 
-            // val storageReference = Firebase.storage.reference
+
 
             // Create a storage reference from our app
             val storageRef = storage.reference
