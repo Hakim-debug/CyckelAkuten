@@ -118,7 +118,7 @@ class UserLoginActivity : AppCompatActivity() {
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(intent)
                 } else {
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, WorkShopActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(intent)
                 }

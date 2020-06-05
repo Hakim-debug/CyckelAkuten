@@ -95,7 +95,7 @@ class UserRecycleAdapter(private val context: Context, private val errors: List<
                     }
 
 
-                    // Snackbar.make(view,text " ")
+
 
 
                 })

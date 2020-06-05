@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         bottomNavigationView = findViewById(R.id.bottom_navigation)
 
 
-        // bottomNavigatitonView.selectedItemId(R.id.bike)
 
 
         btn_cam.setOnClickListener {

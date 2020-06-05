@@ -182,7 +182,7 @@ class PersonalDataActivity : AppCompatActivity() {
 
                 R.id.page_4-> {
 
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, UserLoginActivity::class.java)
 
                     startActivity(intent)
 
