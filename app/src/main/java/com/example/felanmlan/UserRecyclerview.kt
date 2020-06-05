@@ -47,10 +47,8 @@ class UserRecyclerview : AppCompatActivity() {
                         }
 
 
-
-
                     }
-                   adapter.notifyDataSetChanged()
+                    adapter.notifyDataSetChanged()
                 }
             }
         } catch (e: Exception) {

@@ -95,7 +95,6 @@ class PersonalDataActivity : AppCompatActivity() {
             )
 
 
-
             var toast = Toast.makeText(applicationContext, "ErrorReport Sent", Toast.LENGTH_LONG)
             toast.show()
 
@@ -115,7 +114,6 @@ class PersonalDataActivity : AppCompatActivity() {
 
                 }.addOnCanceledListener {
                     println("cancel3")
-
 
 
                 }

@@ -11,13 +11,10 @@ import kotlinx.android.synthetic.main.activity_work_shop.*
 class WorkShopActivity : AppCompatActivity() {
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_work_shop)
         supportActionBar?.title = "WorkShops"
-
-
 
 
         val exampleList = generateDummyList(20)

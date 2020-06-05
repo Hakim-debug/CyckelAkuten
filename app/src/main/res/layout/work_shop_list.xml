@@ -35,10 +35,7 @@
             android:text="Press Here" />
 
 
-
     </RelativeLayout>
-
-
 
 
 </androidx.cardview.widget.CardView>

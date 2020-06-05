@@ -98,7 +98,8 @@ class UserLoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Enter all details", Toast.LENGTH_SHORT).show()
         }
     }
-//Here you chosse User or Business
+
+    //Here you chosse User or Business
     private fun updateUI() {
         val currentUser = mAuth!!.currentUser
         val uid = currentUser?.uid

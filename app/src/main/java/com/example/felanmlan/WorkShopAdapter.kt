@@ -27,7 +27,6 @@ class Adapter(private val exList: List<WorkShops>, private val context: Context)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
 
-
         val currentItem = exList[position]
         holder.imageView.setImageResource(currentItem.imageResources)
         holder.textView1.text = currentItem.text1
@@ -36,16 +35,14 @@ class Adapter(private val exList: List<WorkShops>, private val context: Context)
 
 
 
-            holder.itemView.setOnClickListener {
+        holder.itemView.setOnClickListener {
 
-                val intent = Intent(context, MainActivity::class.java)
+            val intent = Intent(context, MainActivity::class.java)
 
-                //intent.putExtra("personInfo",true)
-                //intent.putExtra("imageUrl",personInfo)
 
-              context.startActivity(intent)
+            context.startActivity(intent)
 
-            }
+        }
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

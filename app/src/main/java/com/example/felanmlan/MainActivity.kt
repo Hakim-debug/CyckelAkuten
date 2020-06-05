@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             println("itemId!!: ${item.itemId}")
             println("bike!!: ${R.id.bike}")
             when (item.itemId) {
-                R.id.page_1-> {
+                R.id.page_1 -> {
 
 
                     val intent = Intent(this, PersonalDataActivity::class.java)
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     true
                 }
 
-                R.id.page_2  -> {
+                R.id.page_2 -> {
 
                     val intent = Intent(this, WorkShopActivity::class.java)
 
@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     // Respond to navigation item 2 click
                     true
                 }
-                R.id.page_3-> {
+                R.id.page_3 -> {
 
                     val intent = Intent(this, MapsActivity::class.java)
 
@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     true
                 }
 
-                R.id.page_4-> {
+                R.id.page_4 -> {
 
                     val intent = Intent(this, MainActivity::class.java)
 
@@ -129,9 +129,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener)
 
     }
-
-
-
 
 
     //Displays the image in Firebase storage

@@ -3,7 +3,7 @@ package com.example.felanmlan
 import java.io.Serializable
 
 class PersonInfo(
-    var id :String?=null,
+    var id: String? = null,
     var firstName: String = "",
     var lastName: String = "",
     var email: String = "",

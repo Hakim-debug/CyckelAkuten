@@ -49,7 +49,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val zoomLevel = 18f
 
 
-
         val infoWindow = LatLng(59.407158, 17.929830)
         val info: Marker = map.addMarker(
             MarkerOptions()

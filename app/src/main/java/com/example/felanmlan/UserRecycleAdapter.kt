@@ -95,9 +95,6 @@ class UserRecycleAdapter(private val context: Context, private val errors: List<
                     }
 
 
-
-
-
                 })
                 .setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, id ->
                     dialog.cancel()

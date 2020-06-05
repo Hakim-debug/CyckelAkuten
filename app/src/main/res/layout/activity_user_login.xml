@@ -2,12 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <EditText
         android:id="@+id/et_email"
         style="@style/viewCustom"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress" />
+
     <EditText
         android:id="@+id/et_password"
         style="@style/viewCustom"
@@ -15,6 +17,7 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword" />
+
     <Button
         android:id="@+id/btn_login"
         style="@style/viewCustom"
@@ -23,6 +26,7 @@
         android:text="@string/login_title"
         android:textColor="@android:color/white"
         android:textStyle="bold" />
+
     <TextView
         android:id="@+id/tv_forgot_password"
         style="@style/viewCustom"
@@ -31,6 +35,7 @@
         android:gravity="center_horizontal"
         android:text="Forgot Password?"
         android:textSize="20sp" />
+
     <Button
         android:id="@+id/btn_register_account"
         style="@style/viewCustom"

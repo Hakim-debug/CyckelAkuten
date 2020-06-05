@@ -37,7 +37,8 @@ class UserDetailsActivity : AppCompatActivity() {
         tvEmail = findViewById<View>(R.id.tv_email) as TextView
         tvEmailVerifiied = findViewById<View>(R.id.tv_email_verifiied) as TextView
     }
-//fetch user data from Firebase database.
+
+    //fetch user data from Firebase database.
     override fun onStart() {
         super.onStart()
         val mUser = mAuth!!.currentUser
@@ -50,6 +51,7 @@ class UserDetailsActivity : AppCompatActivity() {
                 tvFirstName!!.text = snapshot.child("firstName").value as String
                 tvLastName!!.text = snapshot.child("lastName").value as String
             }
+
             override fun onCancelled(databaseError: DatabaseError) {
 
 
