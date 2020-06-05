@@ -35,7 +35,6 @@ class PersonalDataActivity : AppCompatActivity() {
         val imageUrl = intent.getStringExtra("imageUrl")
 
         db = FirebaseFirestore.getInstance()
-        //test()
 
 
         //Creating Send Button and go to Next activity (DataSaveActivity )
@@ -94,7 +93,7 @@ class PersonalDataActivity : AppCompatActivity() {
                 selected = selected,
                 image = imageUrl
             )
-            // Log.i("Test", personInfo.firstName)
+
 
 
             var toast = Toast.makeText(applicationContext, "ErrorReport Sent", Toast.LENGTH_LONG)
@@ -116,7 +115,7 @@ class PersonalDataActivity : AppCompatActivity() {
 
                 }.addOnCanceledListener {
                     println("cancel3")
-                    // readData()
+
 
 
                 }
@@ -146,7 +145,7 @@ class PersonalDataActivity : AppCompatActivity() {
             println("itemId!!: ${item.itemId}")
             println("bike!!: ${R.id.bike}")
             when (item.itemId) {
-                R.id.page_1-> {
+                R.id.page_1 -> {
 
 
                     val intent = Intent(this, PersonalDataActivity::class.java)
@@ -157,7 +156,7 @@ class PersonalDataActivity : AppCompatActivity() {
                     true
                 }
 
-                R.id.page_2  -> {
+                R.id.page_2 -> {
 
                     val intent = Intent(this, WorkShopActivity::class.java)
 
@@ -169,7 +168,7 @@ class PersonalDataActivity : AppCompatActivity() {
                     // Respond to navigation item 2 click
                     true
                 }
-                R.id.page_3-> {
+                R.id.page_3 -> {
 
                     val intent = Intent(this, MapsActivity::class.java)
 
@@ -180,7 +179,7 @@ class PersonalDataActivity : AppCompatActivity() {
                     true
                 }
 
-                R.id.page_4-> {
+                R.id.page_4 -> {
 
                     val intent = Intent(this, UserLoginActivity::class.java)
 
