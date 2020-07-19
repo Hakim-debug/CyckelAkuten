@@ -8,10 +8,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 
 
 class UserRecycleAdapter(private val context: Context, private val errors: List<PersonInfo>) :
@@ -25,6 +27,8 @@ class UserRecycleAdapter(private val context: Context, private val errors: List<
         val textViewAge = itemView.findViewById<TextView>(R.id.textAge)
         val textViewEmail = itemView.findViewById<TextView>(R.id.textEmail)
         var buttonDelete: ImageButton = itemView.findViewById(R.id.buttonDelete)
+        val checkBox = itemView.findViewById<CheckBox>(R.id.checkboxDone)
+        val db = FirebaseFirestore.getInstance()
 
 
         var personInfo: PersonInfo? = null
@@ -41,6 +45,8 @@ class UserRecycleAdapter(private val context: Context, private val errors: List<
 
     //Here data binds with View
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+
 
 
         val person = errors[position]
@@ -70,6 +76,31 @@ class UserRecycleAdapter(private val context: Context, private val errors: List<
 
         }
 
+
+
+        holder.checkBox.setOnClickListener{
+
+            //Update database
+            val data = hashMapOf("serviceDone" to holder.checkBox.isChecked)
+
+
+
+            errors[position].id?.let { it1 ->
+                holder.db.collection("person").document(it1)
+                    .set(data, SetOptions.merge())
+                    .addOnSuccessListener {
+                        Log.d(
+                            " ",
+                            "DocumentSnapshot successfully deleted!"
+                        )
+                    }
+                    .addOnFailureListener { e -> Log.w(" ", "Error deleting document", e) }
+
+
+            }
+
+        }
+
         holder.buttonDelete.setOnClickListener {
             val dialogBuilder = AlertDialog.Builder(context)
             dialogBuilder.setTitle("Remove Object?")
@@ -78,10 +109,10 @@ class UserRecycleAdapter(private val context: Context, private val errors: List<
 
                         dialog, id ->
                     println("id" + errors[position].id)
-                    val db = FirebaseFirestore.getInstance()
+
 
                     errors[position].id?.let { it1 ->
-                        db.collection("person").document(it1)
+                        holder.db.collection("person").document(it1)
                             .delete()
                             .addOnSuccessListener {
                                 Log.d(

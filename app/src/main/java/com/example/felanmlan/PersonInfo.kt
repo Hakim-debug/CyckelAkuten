@@ -12,7 +12,8 @@ class PersonInfo(
     var typ: String = "",
     var location: String = "",
     var selected: String = "",
-    var image: String = ""
+    var image: String = "",
+    var serviceDone: Boolean = false
 ) : Serializable {}
 
 //Test branch

@@ -16,55 +16,21 @@ import android.widget.CheckBox
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import java.lang.Exception
 
 class UserRecyclerview : AppCompatActivity() {
 
     private val errorReports = mutableListOf<PersonInfo>()
     private lateinit var db: FirebaseFirestore
-    lateinit var notificationManager: NotificationManager
-    lateinit var notificationChannel: NotificationChannel
-    lateinit var builder: Notification.Builder
-    private val channelId = "com.example.felanmlan"
-    private val description = "My Notification"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_recyclerview)
         supportActionBar?.title = "Job objects"
-        val checkBox = findViewById<CheckBox>(R.id.checkboxDone)
-        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        checkBox.setOnClickListener{
-            val intent = Intent(this,DataSaveActivity::class.java)
-            val pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT)
 
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                notificationChannel=NotificationChannel(channelId,description,NotificationManager.IMPORTANCE_HIGH )
-                notificationChannel.enableLights(true)
-                notificationChannel.lightColor=Color.RED
-                notificationChannel.enableVibration(true)
-                notificationManager.createNotificationChannel(notificationChannel)
-                builder = Notification.Builder(this,channelId)
-                    .setContentTitle("Bicycle Assistants")
-                    .setContentText("Bicycle ready for pickup")
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setContentIntent(pendingIntent)
-
-
-            }
-            else{
-                builder = Notification.Builder(this)
-                    .setContentTitle("Bicycle Assistants")
-                    .setContentText("Bicycle ready for pickup")
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setContentIntent(pendingIntent)
-
-
-            }
-            notificationManager.notify(0,builder.build())
-
-        }
 
 
         val recyclerView = findViewById<RecyclerView>(R.id.recycleViewErrors)
